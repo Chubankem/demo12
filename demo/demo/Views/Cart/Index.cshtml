@@ -1,0 +1,72 @@
+﻿@using demo.Models;
+@model List<ClotheItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <p class="text-info text-center"> Your Cart is full! </p>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Cover Page</th>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                    @foreach (ClotheItem item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.CoverPage" width="50" />
+                            </td>
+                            <td>
+                                <a target="_blank" href="@Url.Action("Details", "Books", new { id = item.ClotheId })"> @item.Name </a>
+                            </td>
+                            <td>
+                                <form action="@Url.Action("UpdateQuantity")" method="get">
+                                    <input type="hidden" name="BookId" value="@item.ClotheId" />
+                                    <input type="number" min="1" step="1" name="newQuantity" value="@item.Quantity" />
+                                    <button type="submit" class="btn btn-primary btn-sm"> Update </button>
+                                </form>
+                            </td>
+                            <td>
+                                @item.Price.ToString("#,##0").Replace(',', '.') VNĐ
+                            </td>
+                            <td>
+                                @item.Total.ToString("#,##0").Replace(',', '.') VNĐ
+                            </td>
+                            <td>
+                                <a href="@Url.Action("RemoveCart",new { id = item.ClotheId})" onclick="return confirm('you are sure you want to delete it?');" class="btn btn-danger btn-sm">Remove</a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                        <td class="text-right" style="font-size:16px;"> Sum of Quantity:</td>
+                        <td style="font-size:16px;"> @Model.Sum(m => m.Quantity) </td>
+                        <td class="text-right" style="font-size:16px;">Total:</td>
+                        <td style="font-size:16px;">@Model.Sum(m => m.Total).ToString("#,##0").Replace(',', '.') VNĐ </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@using (Html.BeginForm("Create", "Order", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" name="submit" class="btn btn-primary button-login button-hover" value="Login" />
+}

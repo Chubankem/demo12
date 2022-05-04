@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="595c34fd23e9421099e6cb077235fb16" Name="Diagram1">
+        <EntityTypeShape EntityType="LapTrinhWebModel.abc" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.Clothe" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.Order" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.OrderItem" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.Promotion" Width="1.5" PointX="5.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.Review" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.sysdiagram" Width="1.5" PointX="7.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.Type" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.User" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LapTrinhWebModel.Wishlist" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_Clothe2_Type1" ManuallyRouted="false" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_OrderItem_Clothe" ManuallyRouted="false" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_Review_Clothe" ManuallyRouted="false" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_Wishlist_Clothe" ManuallyRouted="false" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_Order_User" ManuallyRouted="false" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_OrderItem_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_Review_User" ManuallyRouted="false" />
+        <AssociationConnector Association="LapTrinhWebModel.FK_Wishlist_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,63 @@
+﻿@model demo.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th>Quantity</th>
+            <th>ClotheId</th>
+        </tr>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    @item.ClotheID
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@Html.Partial("~/Views/Review/Index.cshtml", new demo.Models.Review())
+
+@{
+    TempData["orderId"] = Model.OrderID;
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

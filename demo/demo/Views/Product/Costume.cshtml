@@ -1,0 +1,71 @@
+﻿@using demo.Models;
+@using Type = demo.Models.Type
+@model dynamic
+@{
+    ViewBag.Title = "Costume";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (Type tp in Model.TypeList)
+{
+    <div style=" background-color: rgba(255, 255, 255, 0.8); padding: 20px; font-size: 30px; text-align: center;">
+        <div class="card-body ">
+            @if (tp.TypeName.ToString() == "Áo" || tp.TypeName.ToString() == "Quần")
+            {
+                <input type="button" value="@tp.TypeName.ToString()" onclick="location.href='@Url.Action("Costume", "Product", new { temp = tp.TypeID })'" />
+            }
+        </div>
+    </div>
+}
+
+<div style=" display: grid; grid-template-columns: auto auto auto; padding: 10px;">
+    @foreach (Clothe item in Model.ClotheList)
+    {
+        switch (item.TypeID == Model.temp)
+        {
+            case true:
+                {
+                    <div style=" background-color: rgba(255, 255, 255, 0.8); padding: 20px; font-size: 30px; text-align: center;">
+                        <a href="@Url.Action("Details", "Product", new { id = item.ClotheID })"><img src="@item.Imgcover" alt="" style="width:250px;height:250px "/></a>
+                        <h2>@Html.DisplayFor(modelItem => item.ClotheName)</h2>
+                        <div class="price-details">
+                            <div class="price-number">
+                                <p><span class="rupees">@Html.DisplayFor(modelItem => item.Price)đ</span></p>
+                            </div>
+                            <div class="add-cart">
+                                @*    <h4>@Html.ActionLink("Add to card", "Details", new { id = item.ClotheID })</h4>*@
+                                <a class="btn btn-info" href="/Cart/AddToCart/@item.ClotheID"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart </a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    break;
+                }
+            case false:
+                {
+                    if (Model.temp == 0)
+                    {
+                        if (item.TypeID == 1 || item.TypeID == 2)
+                        {
+                        <div style=" background-color: rgba(255, 255, 255, 0.8); padding: 20px; font-size: 30px; text-align: center;">
+                            <a href="@Url.Action("Details", "Product", new { id = item.ClotheID })"><img src="@item.Imgcover" alt="" style="width:250px;height:250px "/></a>
+                            <h2>@Html.DisplayFor(modelItem => item.ClotheName)</h2>
+                            <div class="price-details">
+                                <div class="price-number">
+                                    <p><span class="rupees">@Html.DisplayFor(modelItem => item.Price)đ</span></p>
+                                </div>
+                                <div class="add-cart">
+                                    @*       <h4>@Html.ActionLink("Add to card", "Details", new { id = item.ClotheID })</h4>*@
+                                    <a class="btn btn-info" href="/Cart/AddToCart/@item.ClotheID"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart </a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        }
+                    }
+                    break;
+                }
+        }
+    }
+</div>

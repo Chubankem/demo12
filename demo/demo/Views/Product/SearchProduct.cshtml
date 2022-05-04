@@ -1,0 +1,28 @@
+﻿@model IEnumerable<demo.Models.Clothe>
+@{
+    ViewBag.Title = "SearchProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style=" display: grid; grid-template-columns: auto auto auto; padding: 10px;">
+    @foreach (var item in Model)
+    {
+        <div style=" background-color: rgba(255, 255, 255, 0.8); padding: 20px; font-size: 30px; text-align: center;">
+            <a href="@Url.Action("Details", "Product", new { id = item.ClotheID })"><img src="@item.Imgcover" alt="" style="width:250px;height:250px "/></a>
+            <h2>@Html.DisplayFor(modelItem => item.ClotheName)</h2>
+            <div class="price-details">
+                <div class="price-number">
+                    <p><span class="rupees">@Html.DisplayFor(modelItem => item.Price)đ</span></p>
+                </div>
+                <div class="add-cart">
+                    @*    <h4>@Html.ActionLink("Add to card", "Details", new { id = item.ClotheID })</h4>*@
+                    <a class="btn btn-info" href="/Cart/AddToCart/@item.ClotheID"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart </a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

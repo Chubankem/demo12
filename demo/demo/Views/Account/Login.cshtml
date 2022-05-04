@@ -1,0 +1,80 @@
+﻿@model demo.Models.User 
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="test">
+        <div class="header-top-login-box header-top-modal">
+            <span class="box-triangle">
+                <svg viewBox="0 0 20 9" role="presentation">
+                    <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                          fill="#ffffff"></path>
+                </svg>
+            </span>
+            <p class="heading">đăng nhập tài khoản</p>
+            <div class="header-box login-box">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, "", new { @class = "modal-form-input", @placeholder = "Email" })
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @class = "modal-form-input", @placeholder = "Password" })
+                    </div>
+                    <div class="recapcha">
+                        This site is protected by reCAPTCHA and the Google
+                        <a class="recapcha-link" href="">Privacy Policy</a> and
+                        <a class="recapcha-link" href="">Terms of Service</a> apply.
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-primary button-login button-hover" value="Login" />
+                    </div>
+                }
+                <div class="modal-help">
+                    Khách hàng mới?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-register"
+                         class="modal-link">
+                        Tạo tài khoản
+                    </div>
+                </div>
+                <div class="modal-help">
+                    Quên mật khẩu?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-reset-password"
+                         class="modal-link">
+                        Khôi phục mật khẩu
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<script type="module" src="~/Asset/js/login.js"></script>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

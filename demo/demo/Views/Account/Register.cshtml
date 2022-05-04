@@ -1,0 +1,88 @@
+﻿@model demo.Models.User
+@{
+    ViewBag.Title = "Resgister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="test">
+        <div class="header-top-login-box header-top-modal">
+            <span class="box-triangle">
+                <svg viewBox="0 0 20 9" role="presentation">
+                    <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                          fill="#ffffff"></path>
+                </svg>
+            </span>
+            <p class="heading">Register</p>
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                //@Html.ValidationSummary()
+                @Html.AntiForgeryToken()
+
+                <div class="header-box login-box">
+                    <div class="form-control err">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Name, "", new { @class = "modal-form-input", @placeholder = "Name" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "badge badge-danger" })
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Email, "", new { @class = "modal-form-input", @placeholder = "Email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge badge-danger" })
+                            @if (ViewBag.error != null)
+                            {
+                                <span class="badge badge-danger">@ViewBag.error</span>
+                            }
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "modal-form-input", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.PhoneNumber, new { @class = "modal-form-input", @placeholder = "Phone Number" })
+                            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "badge badge-danger" })
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Address, new { @class = "modal-form-input", @placeholder = "Address" })
+                            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "badge badge-danger" })
+                            <small></small>
+                        </div>
+                        <div class="recapcha">
+                            This site is protected by reCAPTCHA and the Google
+                            <a class="recapcha-link" href="">Privacy Policy</a> and
+                            <a class="recapcha-link" href="">Terms of Service</a> apply.
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-danger button-login button-hover" value="Register" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="header-box login-box">             
+                <div class="modal-help">
+                    Khách hàng mới?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-register"
+                         class="modal-link">
+                        Tạo tài khoản
+                    </div>
+                </div>
+                <div class="modal-help">
+                    Quên mật khẩu?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-reset-password"
+                         class="modal-link">
+                        Khôi phục mật khẩu
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<script type="module" src="~/Asset/js/login.js"></script>
+
+
+
